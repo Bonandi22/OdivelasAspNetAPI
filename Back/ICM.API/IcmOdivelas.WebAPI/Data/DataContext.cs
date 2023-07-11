@@ -9,26 +9,26 @@ namespace IcmOdivelas.WebAPI.Data
         public DataContext(DbContextOptions options) : base(options) { }        
 
         public DbSet<Member> Members { get; set; }
-        public DbSet<Function> Functions { get; set; }
-        public DbSet<MemberFunction> MemberFunctions { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<MemberRole> MemberRoles { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Situation> Situations { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MemberFunction>()
-             .HasKey(mf => new { mf.MemberId, mf.FunctionId });
+            modelBuilder.Entity<MemberRole>()
+             .HasKey(mf => new { mf.MemberId, mf.RoleId });
 
             modelBuilder.Entity<Member>()
-            .HasMany(e => e.Functions)
+            .HasMany(e => e.Roles)
             .WithMany(e => e.Members)
-            .UsingEntity<MemberFunction>();
+            .UsingEntity<MemberRole>();
 
-            modelBuilder.Entity<Function>()
+            modelBuilder.Entity<Role>()
               .HasMany(e => e.Members)
-              .WithMany(e => e.Functions)
-              .UsingEntity<MemberFunction>();
+              .WithMany(e => e.Roles)
+              .UsingEntity<MemberRole>();
 
             modelBuilder.Entity<Member>()
                 .HasOne(m => m.Category)

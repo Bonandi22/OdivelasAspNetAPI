@@ -1,10 +1,10 @@
 namespace IcmOdivelas.WebAPI.Model
 {
-    public class MemberFunction
+    public class MemberRole
     {
         public int MemberId { get; set; }
-        public int FunctionId { get; set; }
+        public int RoleId { get; set; }
         public Member? Member { get; set; }
-        public Function? Function { get; set; }
+        public Role? Role { get; set; }
     }
 }

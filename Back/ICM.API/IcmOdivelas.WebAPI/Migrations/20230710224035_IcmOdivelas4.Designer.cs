@@ -4,6 +4,7 @@ using IcmOdivelas.WebAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IcmOdivelas.WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230710224035_IcmOdivelas4")]
+    partial class IcmOdivelas4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,19 +110,19 @@ namespace IcmOdivelas.WebAPI.Migrations
                     b.ToTable("Members");
                 });
 
-            modelBuilder.Entity("IcmOdivelas.WebAPI.Model.MemberRole", b =>
+            modelBuilder.Entity("IcmOdivelas.WebAPI.Model.MemberFunction", b =>
                 {
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int>("FunctionId")
                         .HasColumnType("int");
 
-                    b.HasKey("MemberId", "RoleId");
+                    b.HasKey("MemberId", "FunctionId");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("FunctionId");
 
-                    b.ToTable("MemberRoles");
+                    b.ToTable("MemberFunctions");
                 });
 
             modelBuilder.Entity("IcmOdivelas.WebAPI.Model.Role", b =>
@@ -181,23 +184,23 @@ namespace IcmOdivelas.WebAPI.Migrations
                     b.Navigation("Situation");
                 });
 
-            modelBuilder.Entity("IcmOdivelas.WebAPI.Model.MemberRole", b =>
+            modelBuilder.Entity("IcmOdivelas.WebAPI.Model.MemberFunction", b =>
                 {
+                    b.HasOne("IcmOdivelas.WebAPI.Model.Role", "Function")
+                        .WithMany("MemberFunctions")
+                        .HasForeignKey("FunctionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("IcmOdivelas.WebAPI.Model.Member", "Member")
                         .WithMany("MemberFunctions")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IcmOdivelas.WebAPI.Model.Role", "Role")
-                        .WithMany("MemberFunctions")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Function");
 
                     b.Navigation("Member");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("IcmOdivelas.WebAPI.Model.Category", b =>

@@ -30,7 +30,7 @@ namespace IcmOdivelas.WebAPI.Controllers
 
         // GET: api/Members/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Member>> GetMember(int id)
+        public async Task<ActionResult<Member>> GetById(int id)
         {
             var member = await _repo.GetMemberById(id);
             if (member == null) BadRequest("Member not found");
@@ -64,7 +64,7 @@ namespace IcmOdivelas.WebAPI.Controllers
             _repo.Update(member);
             if (_repo.SaveChanges())
             {
-                return Created($"/api/members/{model.Id}", _mapper.Map<Member>(model));
+                return Created($"/api/members/{model.Id}", _mapper.Map<Member>(member));
             }
 
             return Ok("member update");
@@ -82,7 +82,7 @@ namespace IcmOdivelas.WebAPI.Controllers
             _repo.Update(member);
             if (_repo.SaveChanges())
             {
-                return Created($"/api/members/{model.Id}", _mapper.Map<Member>(model));
+                return Created($"/api/members/{model.Id}", _mapper.Map<Member>(member));
             }
 
             return Ok("member update");

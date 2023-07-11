@@ -12,8 +12,32 @@ namespace IcmOdivelas.WebAPI.Data
 
 
         //Member
-        Task<IEnumerable<Member>> GetAllMember();
+      Task<IEnumerable<Member>> GetAllMember();
       Task<Member> GetMemberById(int id );
+
+        //category
+        Task<IEnumerable<Category>> GetAllCategories();
+        Task<Category> GetCategoryById(int id);
+
+        //Roles
+        Task<IEnumerable<Role>> GetAllRole();
+        Task<Role> GetRoleById(int id);
+
+        //Groups
+        Task<IEnumerable<Group>> GetAllGroups();
+        Task<Group> GetGroupById(int id);
+
+        //Situation
+        Task<IEnumerable<Situation>> GetAllSituation();
+        Task<Situation> GetSituationById(int id);
+
+        //MemberRoles
+        Task<IEnumerable<MemberRole>> GetAllMemberRole();
+        Task<MemberRole> GetMemberRoleById(int id);
+
+
+
+
 
     }
 }

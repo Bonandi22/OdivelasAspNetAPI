@@ -10,7 +10,7 @@ namespace IcmOdivelas.WebAPI.Model
     {
         public Member()
         {
-            Functions = new List<Function>();
+            Roles = new List<Role>();
         }
         public Member(int id,
                       string name,
@@ -53,8 +53,8 @@ namespace IcmOdivelas.WebAPI.Model
         [Display(Name = "Situation")]
         public int SituationId { get; set; }
         [Display(Name = "Function")]
-        public List<Function>? Functions { get; set; }
-        public ICollection<MemberFunction>? MemberFunctions { get; set; }
+        public List<Role>? Roles { get; set; }
+        public ICollection<MemberRole>? MemberFunctions { get; set; }
     }
 }
 
