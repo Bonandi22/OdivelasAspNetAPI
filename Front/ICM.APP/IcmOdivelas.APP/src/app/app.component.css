@@ -1,0 +1,11 @@
+body {
+  background-color: #f7f7f7; /* Cor de fundo da página */
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 1200px; /* Largura máxima da página */
+  margin: 0 auto; /* Centraliza a página horizontalmente */
+  padding: 20px;
+}

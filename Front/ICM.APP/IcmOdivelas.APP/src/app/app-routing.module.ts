@@ -9,6 +9,7 @@ import { GroupsComponent } from './components/groups/groups.component';
 import { SituationsComponent } from './components/situations/situations.component';
 import { RoleComponent } from './components/role/role.component';
 import { RegisterMemberComponent } from './components/register-member/register-member.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
@@ -19,8 +20,9 @@ const routes: Routes = [
   {path: 'situations', component: SituationsComponent},
   {path: 'role', component: RoleComponent},
   {path: 'register-member', component: RegisterMemberComponent},
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  {path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
+  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full' },
+  {path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
