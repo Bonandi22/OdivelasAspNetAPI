@@ -1,6 +1,9 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+
 
 import { Category } from 'src/app/models/category';
 import { Group } from 'src/app/models/group';
@@ -23,9 +26,13 @@ export class MembersComponent implements OnInit {
   situations!: Situation[];
   roles!: Role[];
   memberRoles!: MemberRoles[];
+  radioModel = 'small';
+  modalRef!: BsModalRef;
 
   constructor(private dataService: DataService,
-               private router: Router,) {}
+              private router: Router,
+              private modalService: BsModalService,
+              private toastr: ToastrService) {}
 
   ngOnInit() {
     this.getData();
@@ -114,5 +121,42 @@ export class MembersComponent implements OnInit {
     return this.memberRoles.filter((memberRole) => memberRole.memberId === memberId);
   }
 
+  editMember(memberId: any) {
+    console.log('Edit Member:', memberId);
+    const memberData = {
+    };
+    return this.dataService.updateMember(memberId);
+  }
+
+  showDetails(member: any) {
+       console.log('Member Details:', member);
+  }
+
+ // this.userService.deleteUser(user).subscribe(() => console.log("user deleted"));
+
+ deleteMember(memberId: number) {
+  console.log('Delete Member:', memberId);
+  this.dataService.DeleteMemeber(memberId).subscribe(
+    () => {
+      this.toastr.success('Member deleted successfully', 'Success');
+      this.getData(); // Atualizar a lista de membros após a exclusão
+    },
+    (error) => {
+      console.error('Error deleting member:', error);
+      this.toastr.error('An error occurred while deleting the member', 'Error');
+    }
+  );
+}
+
+
+  // deleteMember(memberId: members){
+  //   this.dataService.DeleteMemeber(memberId).subscribe(resultado => {
+  //     this.modalRef.hide();
+  //     alert('Member excluída com sucesso');
+  //     this.dataService.getAllMembers().subscribe(reg => {
+  //       this.members = reg;
+  //     });
+  //   });
+  // }
 }
 

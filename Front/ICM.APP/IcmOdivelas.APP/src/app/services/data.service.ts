@@ -17,12 +17,11 @@ const httpOptions = {
   })
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = `${environment.mainUrlAPI}`;
+  private readonly apiUrl = `${environment.mainUrlAPI}`;
 
   constructor(private http: HttpClient) {}
 
@@ -49,29 +48,30 @@ export class DataService {
     return this.http.get<Situation[]>(`${this.apiUrl}/Situations`);
   }
 
+  //memberRoles
+  getAllMemberRoles(): Observable<MemberRoles[]> {
+    return this.http.get<MemberRoles[]>(`${this.apiUrl}/memberRoles`);
+  }
+
   //register member
   SalveMember(members: members) : Observable<any>{
-    return this.http.post<members>(`${this.apiUrl}/members`, members)
+  return this.http.post<members>(`${this.apiUrl}/members`, members)
   }
+
   SalveMemberRoles(memberRoles: { memberId: any; roleId: any; }[]): Observable<any> {
     const url = `${this.apiUrl}/memberRoles`;
     return this.http.post(url, memberRoles);
   }
-    //Update member
-    updateMember(memberId: number, member: members): Observable<any> {
-    const url = `${this.apiUrl}/members/${memberId}`;
-    return this.http.put<members>(`${this.apiUrl}/members`, member, httpOptions);
-}
 
-  //Delete Member
-  DeleteMemeber(memberId: number): Observable<any>{
-    const url = `${this.apiUrl}/members/${memberId}`;
-    return this.http.delete<number>(url);
+  //Update member
+  updateMember(members: members): Observable<any> {
+    return this.http.put<members>(this.apiUrl, members, httpOptions);
   }
 
-  //memberRoles
-  getAllMemberRoles(): Observable<MemberRoles[]> {
-    return this.http.get<MemberRoles[]>(`${this.apiUrl}/memberRoles`);
+  //Delete Member
+  DeleteMemeber(memberId: number): Observable<any> {
+    const url = `${this.apiUrl}/members/${memberId}`;
+    return this.http.delete<number>(url, httpOptions);
   }
 
 }

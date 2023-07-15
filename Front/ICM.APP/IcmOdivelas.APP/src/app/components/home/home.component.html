@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,37 +7,14 @@
         <meta name="description" content="this page make by xlar about please subscribe and suppot "/>
         <meta name="author" content="" />
         <title>xlar about yt </title>
-        <!-- Favicon-->
-        <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> -->
-       <!-- xlar about yt //biswajit  -->
-        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-</head>
+
+      </head>
 <body id="page-top">
-  <!-- Navigation-->
-  <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-          <a class="navbar-brand"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              Menu
-              <i class="fas fa-bars ms-1"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                  <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#portfolio">profile</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-              </ul>
-          </div>
-      </div>
-  </nav> -->
   <!-- Masthead-->
-  <header class="masthead" style="background-image: url('assets/img/header-bg.jpg')">
+  <header class="masthead" style="background-image: url('assets/img/header-bg.jpg')" >
     <div class="container">
       <div class="masthead-subheading">Welcome To ICM Odivelas</div>
       <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
@@ -116,56 +94,6 @@
   </div>
 </div>
   </section>
-
-  <script>
-
-window.addEventListener('DOMContentLoaded', event => {
-
-// Navbar shrink function
-var navbarShrink = function () {
-    const navbarCollapsible = document.body.querySelector('#mainNav');
-    if (!navbarCollapsible) {
-        return;
-    }
-    if (window.scrollY === 0) {
-        navbarCollapsible.classList.remove('navbar-shrink')
-    } else {
-        navbarCollapsible.classList.add('navbar-shrink')
-    }
-
-};
-
-// Shrink the navbar
-navbarShrink();
-
-// Shrink the navbar when page is scrolled
-document.addEventListener('scroll', navbarShrink);
-
-// Activate Bootstrap scrollspy on the main nav element
-const mainNav = document.body.querySelector('#mainNav');
-if (mainNav) {
-    new bootstrap.ScrollSpy(document.body, {
-        target: '#mainNav',
-        offset: 74,
-    });
-};
-
-// Collapse responsive navbar when toggler is visible
-const navbarToggler = document.body.querySelector('.navbar-toggler');
-const responsiveNavItems = [].slice.call(
-    document.querySelectorAll('#navbarResponsive .nav-link')
-);
-responsiveNavItems.map(function (responsiveNavItem) {
-    responsiveNavItem.addEventListener('click', () => {
-        if (window.getComputedStyle(navbarToggler).display !== 'none') {
-            navbarToggler.click();
-        }
-    });
-});
-
-});
-
-  </script>
 </body>
 </html>
 

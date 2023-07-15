@@ -14,6 +14,7 @@ namespace IcmOdivelas.WebAPI.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Situation> Situations { get; set; }
+        public DbSet<User> Users {get; set;}
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

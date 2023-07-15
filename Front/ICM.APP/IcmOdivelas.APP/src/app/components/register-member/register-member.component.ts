@@ -8,8 +8,6 @@ import { Role } from 'src/app/models/role';
 import { Situation } from 'src/app/models/situation';
 
 import { DataService } from 'src/app/services/data.service';
-// Importe o arquivo JavaScript
-import './form-validation.js';
 
 @Component({
   selector: 'app-register-member',

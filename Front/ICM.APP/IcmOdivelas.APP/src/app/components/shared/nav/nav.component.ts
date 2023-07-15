@@ -7,12 +7,14 @@ import { Component, HostListener, OnInit } from '@angular/core';
 
 })
 export class NavComponent implements OnInit {
-  isScrolled: boolean = false;
 
+  // scroll navbar
+  isScrolled: boolean = false;
   @HostListener('window:scroll')
   onWindowScroll() {
     this.isScrolled = (window.pageYOffset > 0);
   }
+
   constructor() { }
 
   ngOnInit() {

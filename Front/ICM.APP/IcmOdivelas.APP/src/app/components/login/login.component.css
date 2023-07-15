@@ -1,0 +1,11 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  background-image: url('../login/img/header-bg.jpg');
+  background-size: cover;
+}

@@ -35,9 +35,12 @@ namespace IcmOdivelas.WebAPI.Data
         Task<IEnumerable<MemberRole>> GetAllMemberRole();
         Task<MemberRole> GetMemberRoleById(int id);
 
+        //login
+        Task<bool> IsValidUser(string username, string password);
 
-
-
-
+        //User
+        Task<User> GetUserByEmail(string username);
+        Task<List<User>> GetAllUsers();
+        Task<User> GetUserByName(string Login);
     }
 }

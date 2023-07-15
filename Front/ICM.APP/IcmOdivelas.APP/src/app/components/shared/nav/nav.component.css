@@ -1,7 +1,6 @@
-body {
-  min-height: 110vh;
+.route-title {
+  margin-top: 100px;
 }
-
 .navbar {
   transition: all 0.4s;
 }
@@ -20,9 +19,6 @@ body {
       color: #555;
   }
 
-  body {
-    min-height: 12vh;
-}
 .fixed-top {
   position: fixed;
   top: 0;

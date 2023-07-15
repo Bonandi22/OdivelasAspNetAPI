@@ -101,5 +101,37 @@ namespace IcmOdivelas.WebAPI.Data
             var memberRoles = await _context.MemberRoles.FindAsync(id);
             return memberRoles!;
         }
+
+        //login
+        public async Task<bool> IsValidUser(string username, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Login == username);
+            if (user != null)
+            {               
+                if (user.Password == password)
+                {
+                    return true; 
+                }
+            }            
+            return false; 
+        }       
+
+        //User
+        public async Task<User> GetUserByEmail(string login)
+        {
+           var user = await _context.Users.FirstOrDefaultAsync(u => u.Login == login);         
+            return user!;
+        }
+
+      public async Task<List<User>> GetAllUsers()
+        {
+            var users = await _context.Users.ToListAsync();
+            return users;        
+        }
+    public async Task<User> GetUserByName(string login)
+    {
+        return await _context.Users.FirstOrDefaultAsync(u => u.Login == login) ?? new User(); ;
+    }
+
     }
 }

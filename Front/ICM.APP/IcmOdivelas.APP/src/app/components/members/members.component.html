@@ -6,7 +6,6 @@
   <app-nav></app-nav>
 </head>
 <body>
-
   <div class="container">
     <h2>Member List</h2>
     <br>
@@ -42,10 +41,15 @@
               <li *ngFor="let memberRole of getMemberRoles(member.id)">{{ getRoleName(memberRole.roleId) }}</li>
             </ul>
           </td>
-        </tr>
-      </tbody>
+          <ul>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary" (click)="editMember(member.id)">Edit</button>
+              <button type="button" class="btn btn-outline-info" (click)="showDetails(member.id)">Details</button>
+              <button type="button" class="btn btn-outline-danger" (click)="deleteMember(member.id)">Delete</button>
+            </div>
+          </ul>
+          </tr>
     </table>
   </div>
-
-</body>
+  </body>
 </html>

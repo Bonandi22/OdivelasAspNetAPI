@@ -10,19 +10,22 @@ import { SituationsComponent } from './components/situations/situations.componen
 import { RoleComponent } from './components/role/role.component';
 import { RegisterMemberComponent } from './components/register-member/register-member.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './services/guards/auth.guard';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
-  {path: 'members', component: MembersComponent },
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'category', component: CategoryComponent},
-  {path: 'groups', component: GroupsComponent},
-  {path: 'situations', component: SituationsComponent},
-  {path: 'role', component: RoleComponent},
-  {path: 'register-member', component: RegisterMemberComponent},
-  {path: 'home', component: HomeComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full' },
-  {path: '**', redirectTo: 'home', pathMatch: 'full' }
+  {path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'category', component: CategoryComponent, canActivate: [AuthGuard]},
+  {path: 'groups', component: GroupsComponent, canActivate: [AuthGuard]},
+  {path: 'situations', component: SituationsComponent, canActivate: [AuthGuard]},
+  {path: 'role', component: RoleComponent, canActivate: [AuthGuard]},
+  {path: 'register-member', component: RegisterMemberComponent, canActivate: [AuthGuard]},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
+  {path: '', redirectTo: 'login', pathMatch: 'full' },
+  {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

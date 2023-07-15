@@ -91,15 +91,15 @@ namespace IcmOdivelas.WebAPI.Controllers
 
         // DELETE: api/Members/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteMember(int id)
+        public async Task<IActionResult> DeleteMember(int id)
         {
-            var member = _repo.GetMemberById(id);
+            var member = await  _repo.GetMemberById(id);
             if (member == null) return BadRequest("member not found");
 
             _repo.Delete(member);
             if (_repo.SaveChanges())
             {
-                return Ok("Member has delete");
+               return Ok(new { message = "Member has been deleted" });
             }
 
             return BadRequest("member not delete");
