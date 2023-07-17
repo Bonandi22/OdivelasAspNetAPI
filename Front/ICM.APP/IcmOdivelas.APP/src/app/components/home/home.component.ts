@@ -1,5 +1,6 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { Observable, map, shareReplay } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  username!: string;
+  
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
 
-  constructor(private loginService: LoginService) {}
+constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
   }

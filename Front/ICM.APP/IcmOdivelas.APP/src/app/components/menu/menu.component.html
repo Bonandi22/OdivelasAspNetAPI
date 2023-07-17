@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="members">Members List</a>
+      <a mat-list-item href="register-member">New Member</a>
+      <a type="submit"  mat-list-item
+      (click)="doLogout()"
+      pButton>Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Icm Odivelas</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-reduced-space" >
+      <div class="container">
+        <a routerLink="home" class="navbar-brand"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+            <span class="fas fa-bars ms-1"></span>
+            </button>
+            <div>
+          </div>
+    </div>
+    </nav>
+    <ng-content></ng-content>    
+  </mat-sidenav-content>
+</mat-sidenav-container>

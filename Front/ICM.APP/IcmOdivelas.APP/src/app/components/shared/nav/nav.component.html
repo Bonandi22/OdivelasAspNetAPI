@@ -30,10 +30,13 @@
                   <a routerLink="register-member" class="nav-link">Register</a>
                 </li>
                 <li class="nav-item" routerLinkActive="active">
-                  <a routerLink="login" class="nav-link">Login</a>
+                  <a type="submit"  class="nav-link"
+                  (click)="doLogout()"
+                  pButton>Logout</a>
                 </li>
               </ul>
           </div>
+
           <div>
         </div>
   </div>

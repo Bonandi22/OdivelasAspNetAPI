@@ -1,99 +1,402 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="this page make by xlar about please subscribe and suppot "/>
-        <meta name="author" content="" />
-        <title>xlar about yt </title>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
 
-      </head>
-<body id="page-top">
-  <!-- Masthead-->
-  <header class="masthead" style="background-image: url('assets/img/header-bg.jpg')" >
-    <div class="container">
-      <div class="masthead-subheading">Welcome To ICM Odivelas</div>
-      <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-      <!-- <a class="btn btn-primary btn-sm text-uppercase" href="#services">Book Now</a> -->
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header>
+      <!-- End Header -->
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined"></span> Icm Odivelas
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="members" target="_blank">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">inventory_2</span> Products
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">category</span> Categories
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">groups</span> Customers
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">fact_check</span> Inventory
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">poll</span> Reports
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">settings</span> Settings
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <h2>DASHBOARD</h2>
+        </div>     
+        <div class="main-cards">
+          <a href="register-member">
+            <div class="card">
+              <div class="card-inner" >
+                <h3>New MEMBER</h3>
+                <span class="material-icons-outlined">groups</span>              
+              </div>
+              <h1>1500</h1>
+            </div>
+          </a>          
+          <a href="members">
+            <div class="card">
+              <div class="card-inner" >
+                <h3>MEMBER LIST</h3>
+                <span class="material-icons-outlined">groups</span>              
+              </div>
+              <h1>1500</h1>
+            </div>
+          </a>      
+          <div class="card">
+            <div class="card-inner">
+              <h3>CUSTOMERS</h3>
+              <span class="material-icons-outlined" href="register-member">groups</span>
+            </div>
+            <h1>1500</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>ALERTS</h3>
+              <span class="material-icons-outlined">notification_important</span>
+            </div>
+            <h1>56</h1>
+          </div>
+
+        </div>
+
+        <div class="charts">
+
+          <div class="charts-card">
+            <h2 class="chart-title">Top 5 Products</h2>
+            <div id="bar-chart"></div>
+          </div>
+
+          <div class="charts-card">
+            <h2 class="chart-title">Purchase and Sales Orders</h2>
+            <div id="area-chart"></div>
+          </div>
+
+        </div>
+      </main>
+      <!-- End Main -->
+
     </div>
-  </header>
-  <section class="maranata-section">
-    <div class="container">
-      <h2>Sobre a Igreja Cristã Maranata</h2>
-      <p>A Igreja Cristã Maranata é uma igreja evangélica de orientação reformada, fundada no Brasil em 1968. Seu nome, "Maranata", vem do termo aramaico que significa "O Senhor vem" ou "Vem, Senhor Jesus" e reflete a ênfase da igreja na segunda vinda de Cristo.</p>
-      <p>A igreja tem como base de fé e prática os princípios do cristianismo bíblico, buscando seguir os ensinamentos de Jesus Cristo e alicerçar-se na autoridade das Sagradas Escrituras. A Maranata enfatiza a importância da salvação pela graça mediante a fé em Jesus, a vida santificada pelo Espírito Santo e a edificação da igreja através dos dons espirituais.</p>
-      <p>Com uma abordagem missionária, a Igreja Cristã Maranata tem se expandido para diversas regiões do Brasil e para outros países ao redor do mundo. Seus membros são encorajados a viver uma vida cristã comprometida, engajando-se em atividades de adoração, estudo bíblico, evangelismo e obras sociais.</p>
-      <p>Nesta seção, apresentamos alguns cards com informações relevantes sobre iniciativas e ministérios da Igreja Cristã Maranata. Cada card representa uma oportunidade de conhecer e se envolver com diferentes aspectos do trabalho realizado pela igreja.</p>
-      <p>Esperamos que esses recursos sejam úteis para você obter mais informações e se conectar com a comunidade da Igreja Cristã Maranata.</p>
-    </div>
-  </section>
-  <section>
-    <!--========== Cards ==========-->
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-          <div class="card custom-card-style h-100">
-              <button type="button" class="btn btn-outline-secondary custom-button-style">
-                  <a href="https://igrejacristamaranata.pt/">
-                      <img src="./assets/img/icm4.jpg" class="card-img-top custom-card-image" alt="Imagem do card">
-                  </a>
-              </button>
-              <div class="card-body">
-                  <h5 class="card-title">ICM - Portugal</h5>
-                  <p class="card-text">
-                      "Guardando o mistério da Fé..."
-                      Lema 2022
-                  </p>
-              </div>
-              <div class="card-footer">
-                  <small class="text-body-secondary">Last updated 3 mins ago</small>
-              </div>
-          </div>
-      </div>
-      <div class="col">
-          <div class="card custom-card-style h-100">
-              <button type="button" class="btn btn-outline-secondary custom-button-style">
-                  <a href="https://radiomaanaim.com.br/">
-                      <img src="./assets/img/radiomaanaim.jpg" class="card-img-top custom-card-image" alt="Imagem do card">
-                  </a>
-              </button>
-              <div class="card-body">
-                  <h5 class="card-title">Rádio Maanaim</h5>
-                  <p class="card-text">
-                      O portal da Rádio Maanaim tem a responsabilidade de anunciar, através de suas publicações, que o Senhor Jesus vem!
-                  </p>
-              </div>
-              <div class="card-footer">
-                  <small class="text-body-secondary">Last updated 3 mins ago</small>
-              </div>
-          </div>
-      </div>
-      <div class="col">
-          <div class="card custom-card-style h-100">
-              <button type="button" class="btn btn-outline-secondary custom-button-style">
-                  <a href="https://www.ciasmaranata.org.br/">
-                      <img src="./assets/img/cias 3.png" class="card-img-top custom-card-image" alt="Imagem do card">
-                  </a>
-              </button>
-              <div class="card-body">
-                  <h5 class="card-title">CIAS Maranata</h5>
-                  <p class="card-text">
-                      Site Oficial da Igreja Cristã Maranata do Trabalho de Crianças, Intermediários e Adolescentes.<br>
-                      “Instrui ao menino no caminho em que deve andar, e até quando envelhecer não se desviará dele." Pv 22:6
-                  </p>
-              </div>
-              <div class="card-footer">
-                  <small class="text-body-secondary">Last updated 3 mins ago</small>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-  </section>
-</body>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+      // SIDEBAR TOGGLE
+var sidebarOpen = false;
+var sidebar = document.getElementById('sidebar');
+
+function openSidebar() {
+  if (!sidebarOpen) {
+    sidebar.classList.add('sidebar-responsive');
+    sidebarOpen = true;
+  }
+}
+
+function closeSidebar() {
+  if (sidebarOpen) {
+    sidebar.classList.remove('sidebar-responsive');
+    sidebarOpen = false;
+  }
+}
+
+// ---------- CHARTS ----------
+
+// BAR CHART
+var barChartOptions = {
+  series: [
+    {
+      data: [10, 8, 6, 4, 2],
+      name: 'Products',
+    },
+  ],
+  chart: {
+    type: 'bar',
+    background: 'transparent',
+    height: 350,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ['#2962ff', '#d50000', '#2e7d32', '#ff6d00', '#583cb3'],
+  plotOptions: {
+    bar: {
+      distributed: true,
+      borderRadius: 4,
+      horizontal: false,
+      columnWidth: '40%',
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    opacity: 1,
+  },
+  grid: {
+    borderColor: '#55596e',
+    yaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+  },
+  legend: {
+    labels: {
+      colors: '#f5f7ff',
+    },
+    show: true,
+    position: 'top',
+  },
+  stroke: {
+    colors: ['transparent'],
+    show: true,
+    width: 2,
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+    theme: 'dark',
+  },
+  xaxis: {
+    categories: ['Laptop', 'Phone', 'Monitor', 'Headphones', 'Camera'],
+    title: {
+      style: {
+        color: '#f5f7ff',
+      },
+    },
+    axisBorder: {
+      show: true,
+      color: '#55596e',
+    },
+    axisTicks: {
+      show: true,
+      color: '#55596e',
+    },
+    labels: {
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'Count',
+      style: {
+        color: '#f5f7ff',
+      },
+    },
+    axisBorder: {
+      color: '#55596e',
+      show: true,
+    },
+    axisTicks: {
+      color: '#55596e',
+      show: true,
+    },
+    labels: {
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+};
+
+var barChart = new ApexCharts(
+  document.querySelector('#bar-chart'),
+  barChartOptions
+);
+barChart.render();
+
+// AREA CHART
+var areaChartOptions = {
+  series: [
+    {
+      name: 'Purchase Orders',
+      data: [31, 40, 28, 51, 42, 109, 100],
+    },
+    {
+      name: 'Sales Orders',
+      data: [11, 32, 45, 32, 34, 52, 41],
+    },
+  ],
+  chart: {
+    type: 'area',
+    background: 'transparent',
+    height: 350,
+    stacked: false,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ['#00ab57', '#d50000'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    gradient: {
+      opacityFrom: 0.4,
+      opacityTo: 0.1,
+      shadeIntensity: 1,
+      stops: [0, 100],
+      type: 'vertical',
+    },
+    type: 'gradient',
+  },
+  grid: {
+    borderColor: '#55596e',
+    yaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+  },
+  legend: {
+    labels: {
+      colors: '#f5f7ff',
+    },
+    show: true,
+    position: 'top',
+  },
+  markers: {
+    size: 6,
+    strokeColors: '#1b2635',
+    strokeWidth: 3,
+  },
+  stroke: {
+    curve: 'smooth',
+  },
+  xaxis: {
+    axisBorder: {
+      color: '#55596e',
+      show: true,
+    },
+    axisTicks: {
+      color: '#55596e',
+      show: true,
+    },
+    labels: {
+      offsetY: 5,
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+  yaxis: [
+    {
+      title: {
+        text: 'Purchase Orders',
+        style: {
+          color: '#f5f7ff',
+        },
+      },
+      labels: {
+        style: {
+          colors: ['#f5f7ff'],
+        },
+      },
+    },
+    {
+      opposite: true,
+      title: {
+        text: 'Sales Orders',
+        style: {
+          color: '#f5f7ff',
+        },
+      },
+      labels: {
+        style: {
+          colors: ['#f5f7ff'],
+        },
+      },
+    },
+  ],
+  tooltip: {
+    shared: true,
+    intersect: false,
+    theme: 'dark',
+  },
+};
+
+var areaChart = new ApexCharts(
+  document.querySelector('#area-chart'),
+  areaChartOptions
+);
+areaChart.render();
+    </script>
+  </body>
 </html>
-

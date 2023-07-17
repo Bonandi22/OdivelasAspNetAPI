@@ -36,4 +36,7 @@ export class LoginService {
   getUserByName(login: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/User/${login}`);
   }
+  logout() {
+    localStorage.removeItem('token');
+  }
 }

@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/shared/nav/nav.component';
 import { TituloComponent } from './components/shared/titulo/titulo.component';
 import { MembersComponent } from './components/members/members.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoryComponent } from './components/Category/Category.component';
 import { SituationsComponent } from './components/situations/situations.component';
 import { GroupsComponent } from './components/groups/groups.component';
@@ -37,6 +36,12 @@ import { MatSnackBarModule} from '@angular/material/snack-bar'
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MenuComponent } from './components/menu/menu.component';
+import { MatListModule } from '@angular/material/list';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -48,7 +53,6 @@ import { InputTextModule } from 'primeng/inputtext';
     NavComponent,
     TituloComponent,
     MembersComponent,
-    DashboardComponent,
     CategoryComponent,
     SituationsComponent,
     GroupsComponent,
@@ -56,12 +60,16 @@ import { InputTextModule } from 'primeng/inputtext';
     RegisterMemberComponent,
     HomeComponent,
     LoginComponent,
+    MenuComponent,
+    RegisterMemberComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    LayoutModule,
     HttpClientModule,
     RouterModule.forRoot([]),
     ModalModule.forRoot(),
@@ -86,7 +94,10 @@ import { InputTextModule } from 'primeng/inputtext';
       preventDuplicates: true,
       progressBar: true,
       closeButton: true
-    })
+    }),
+    MatListModule,
+    MatGridListModule,
+    MatMenuModule
   ],
 
   providers: [HttpClientModule, DataService],

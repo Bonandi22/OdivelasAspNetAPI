@@ -1,4 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
+import { LoginService } from './../../../services/login.service';
+
 
 @Component({
   selector: 'app-nav',
@@ -15,9 +20,16 @@ export class NavComponent implements OnInit {
     this.isScrolled = (window.pageYOffset > 0);
   }
 
-  constructor() { }
+  constructor(private router: Router,
+    public loginService: LoginService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
 
+  }
+  doLogout() {
+    this.loginService.logout();
+    this.toastr.success('Logout successful!', 'Success');
+    this.router.navigate(['/login']);
   }
 }

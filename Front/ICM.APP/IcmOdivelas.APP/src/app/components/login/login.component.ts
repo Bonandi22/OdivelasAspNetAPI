@@ -29,14 +29,13 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         const token = response.jwt;
         this.loginService.setAuthToken(token);
-
         // Obter o nome do usuário
         const login = this.requestLogin.login; // Assumindo que o login está no campo "login" do objeto "requestLogin"
         this.loginService.getUserName(login).subscribe(
           (user: User) => {
             const userName = user.name;
             this.toastr.success(`Welcome, ${userName}!`, 'Success');
-            this.router.navigate(['/members']);
+            this.router.navigate(['/home']);
           },
           (error) => {
             console.log(error);
@@ -56,6 +55,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
 
 }
 
