@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -36,6 +37,9 @@ export class RegisterMemberComponent implements OnInit {
     this.forms = new FormGroup({
       name: new FormControl(null),
       phoneNumber: new FormControl(null),
+      address: new FormControl(null),
+      city: new FormControl(null),
+      region: new FormControl(null),
       birthDate: new FormControl(null),
       isbaptized: new FormControl(false),
       nacionality: new FormControl(null),
@@ -49,6 +53,7 @@ export class RegisterMemberComponent implements OnInit {
   SendForms(): void {
     const memberData = this.forms.value;
     const selectedRoles = memberData.selectedRoles;
+    memberData.birthDate = this.formatarDataPorExtenso(memberData.birthDate);
 
     this.dataService.SalveMember(memberData).subscribe(
       (memberResult) => {
@@ -73,6 +78,13 @@ export class RegisterMemberComponent implements OnInit {
       }
     );
   }
+  formatarDataPorExtenso(data: Date | null): string {
+    if (data) {
+      return formatDate(data, 'yyyy-MM-dd', 'en-US');
+    }
+    return '';
+  }
+
   loadCategories() {
     this.dataService.getAllCategories().subscribe(categories => {
       this.categories = categories;

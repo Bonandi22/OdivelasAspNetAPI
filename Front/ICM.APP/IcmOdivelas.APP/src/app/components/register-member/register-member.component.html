@@ -1,78 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <div class="container p-5">
-    <div class="row">
-      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="forms">
-        <h6>{{formsTitle}}</h6>
-        <hr>
-        <form [formGroup]="forms" (ngSubmit)="SendForms()">
-          <div class="form-group">
-            <label for="nameInput">Name</label>
-            <input id="nameInput" type="text" class="form-control form-control-sm" formControlName="name">
-          </div>
-          <div class="form-group">
-            <label for="phoneNumberInput">Phone Number</label>
-            <input id="phoneNumberInput" type="text" class="form-control form-control-sm" formControlName="phoneNumber">
-          </div>
-          <div class="form-group">
-            <label for="birthDateInput">Birth Date</label>
-            <input id="birthDateInput" type="date" class="form-control form-control-sm" formControlName="birthDate">
-          </div>
-          <div class="form-group">
-            <label for="isBaptizedInput">Is Baptized?</label>
-            <select id="isBaptizedInput" class="form-control form-control-sm" formControlName="isbaptized">
-              <option [value]="true">Yes</option>
-              <option [value]="false">No</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="nationalityInput">Nationality</label>
-            <input id="nationalityInput" type="text" class="form-control form-control-sm" formControlName="nacionality">
-          </div>
-          <div class="form-group">
-            <label for="rolesInput">Roles</label>
-            <select id="rolesInput" class="form-control" formControlName="selectedRoles" multiple>
-              <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="categoryInput">Category</label>
-            <select id="categoryInput" class="form-control form-control-sm" formControlName="categoryId">
-              <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="groupInput">Group</label>
-            <select id="groupInput" class="form-control form-control-sm" formControlName="groupId">
-              <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="situationInput">Situation</label>
-            <select id="situationInput" class="form-control form-control-sm" formControlName="situationId">
-              <option *ngFor="let situation of situations" [value]="situation.id">{{ situation.name }}</option>
-            </select>
-          </div>
-          <br>
-          <div class="container">
-            <div class="row">
-              <div>
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Save</button>
-              </div>
-              <div class="pl-1">
-                <button type="button" class="btn btn-sm btn-light">Back</button>
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="mb-5 text-uppercase">Members registration form</h3>
+                <form [formGroup]="forms" (ngSubmit)="SendForms()">
+                <div class="row">
+                  <div class="form-outline mb-4">
+                    <input id="nameInput" type="text" formControlName="name"
+                    class="form-control form-control-lg" />
+                    <label class="form-label" for="nameInput">Full Name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input id="phoneNumberInput" type="text"class="form-control form-control-lg" formControlName="phoneNumber"/>
+                      <label class="form-label" for="phoneNumberInput">Phone Number</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input id="nationalityInput" type="text"  class="form-control form-control-lg" formControlName="nacionality" />
+                      <label class="form-label" for="nationalityInput">Nationality</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="addressInput" class="form-control form-control-lg" formControlName="address" />
+                  <label class="form-label" for="addressInput">Address</label>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input id="cityInput" type="text"class="form-control form-control-lg" formControlName="city"/>
+                      <label class="form-label" for="cityInput">City</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input id="regionInput" type="text"  class="form-control form-control-lg" formControlName="region" />
+                      <label class="form-label" for="regionInput">Region</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label"  for="birthDateInput">BirthDate</label>
+                    <input id="birthDateInput" type="date"  class="form-control form-control-lg" formControlName="birthDate" />
+                  </div>
+                </div>
+                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                  <h5 class="mb-0 me-4">Is Baptized?: </h5>
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input class="form-check-input" type="radio" formControlName="isbaptized" id="isBaptizedInput" [value]="true" />
+                    <label class="form-check-label" for="isBaptizedInput">Yes</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-0 me-4">
+                    <input class="form-check-input" type="radio" formControlName="isbaptized" id="isBaptizedInput" [value]="false" />
+                    <label class="form-check-label" for="isBaptizedInput">Not</label>
+                  </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label for="rolesInput">Roles</label>
+                  <select id="rolesInput" class="form-control" formControlName="selectedRoles" multiple>
+                    <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+                  </select>
+                </div>
+
+                <p style="color: red;">Please choose at least one option below.</p>
+
+                <div class="form-outline mb-4">
+                  <label for="categoryInput">Category</label>
+                  <select id="categoryInput" class="form-control form-control-lg" formControlName="categoryId">
+                    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                  </select>
+                </div>
+                <div class="form-outline mb-4">
+                  <label for="groupInput">Group</label>
+                <select id="groupInput" class="form-control form-control-Lg" formControlName="groupId">
+                  <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
+                </select>
+                </div>
+                <div class="form-outline mb-4">
+                  <label for="situationInput">Situation</label>
+                  <select id="situationInput" class="form-control form-control-lg" formControlName="situationId">
+                    <option *ngFor="let situation of situations" [value]="situation.id">{{ situation.name }}</option>
+                  </select>
+                </div>
+                <div class="d-flex justify-content-end pt-3">
+                  <button type="button" class="btn btn-light btn-lg">Reset all</button>
+                  <button type="submit" class="btn btn-warning btn-lg ms-2">Submit for</button>
+                </div>
+                </form>
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
-</body>
-</html>
-
+</section>

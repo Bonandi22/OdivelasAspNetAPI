@@ -42,7 +42,35 @@ namespace IcmOdivelas.WebAPI.Controllers
             }
 
             return BadRequest("Failed to save member roles");
-        }        
+                } 
 
-     }
+         // POST: api/MemberRoles/update
+        [HttpPost("Update")]
+        public ActionResult<MemberRole> PostMemberRolesUpdate(List<MemberRole> memberRoles)
+        {
+            foreach (var memberRole in memberRoles)
+            {
+                  var existingMemberRole =  _repo.GetMemberRoleByIdUpdate(memberRole.MemberId, memberRole.RoleId);
+
+                    if (existingMemberRole == null)
+                    {
+                        _repo.Add(memberRole);
+                    }
+                    else
+                    {
+                        _repo.Update(existingMemberRole);
+                    }
+            }
+
+            if (_repo.SaveChanges())
+            {
+                return Created("/api/memberRoles", memberRoles);
+            }
+
+            return BadRequest("Failed to save member roles");
+            } 
+
+        
+
+    }       
 }

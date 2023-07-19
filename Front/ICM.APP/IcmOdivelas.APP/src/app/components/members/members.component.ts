@@ -1,6 +1,8 @@
+import { ModalMembersComponent } from './../modal-members/modal-members.component';
 import { formatDate } from '@angular/common';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,6 +15,8 @@ import { Role } from 'src/app/models/role';
 import { Situation } from 'src/app/models/situation';
 
 import { DataService } from 'src/app/services/data.service';
+import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import { EditMemberComponent } from '../edit-members/edit-members.component';
 
 @Component({
   selector: 'app-members',
@@ -30,14 +34,12 @@ export class MembersComponent implements OnInit {
   modalRef!: BsModalRef;
 
   constructor(private dataService: DataService,
-              private router: Router,
-              private modalService: BsModalService,
-              private toastr: ToastrService) {}
+              private toastr: ToastrService,
+              private modalService: NgbModal ) {}
 
   ngOnInit() {
     this.getData();
   }
-
   getData() {
     this.dataService.getAllMembers().subscribe(
       (response: members[]) => {
@@ -91,24 +93,20 @@ export class MembersComponent implements OnInit {
       }
     );
   }
-
   formatarDataPorExtenso(data: Date | null): string {
     if (data) {
       return formatDate(data, 'dd / MMMM', 'en-US');
     }
     return '';
   }
-
   getCategoryName(categoryId: number): string {
     const category = this.categories.find((cat) => cat.id === categoryId);
     return category ? category.name : '';
   }
-
   getGroupName(groupId: number): string {
     const group = this.groups.find((grp) => grp.id === groupId);
     return group ? group.name : '';
   }
-
   getSituationName(situationId: number): string {
     const situation = this.situations.find((sit) => sit.id === situationId);
     return situation ? situation.name : '';
@@ -121,42 +119,29 @@ export class MembersComponent implements OnInit {
     return this.memberRoles.filter((memberRole) => memberRole.memberId === memberId);
   }
 
-  editMember(memberId: any) {
-    console.log('Edit Member:', memberId);
-    const memberData = {
-    };
-    return this.dataService.updateMember(memberId);
+  showDetails(member: members) {
+    const modalRef = this.modalService.open(ModalMembersComponent);
+    modalRef.componentInstance.member = member;
   }
 
-  showDetails(member: any) {
-       console.log('Member Details:', member);
+  deleteMember(memberId: number) {
+    const modalRef = this.modalService.open(ModalConfirmComponent);
+    modalRef.result.then((result) => {
+      if (result === true) {
+        this.dataService.DeleteMember(memberId).subscribe(
+          () => {
+            this.toastr.success('Member deleted successfully', 'Success');
+            this.getData(); // Atualizar a lista de membros após a exclusão
+          },
+          (error) => {
+            console.error('Error deleting member:', error);
+            this.toastr.error('An error occurred while deleting the member', 'Error');
+          }
+        );
+      }
+    }).catch((reason) => {
+      // Usuário cancelou a exclusão, não fazer nada
+    });
   }
-
- // this.userService.deleteUser(user).subscribe(() => console.log("user deleted"));
-
- deleteMember(memberId: number) {
-  console.log('Delete Member:', memberId);
-  this.dataService.DeleteMemeber(memberId).subscribe(
-    () => {
-      this.toastr.success('Member deleted successfully', 'Success');
-      this.getData(); // Atualizar a lista de membros após a exclusão
-    },
-    (error) => {
-      console.error('Error deleting member:', error);
-      this.toastr.error('An error occurred while deleting the member', 'Error');
-    }
-  );
-}
-
-
-  // deleteMember(memberId: members){
-  //   this.dataService.DeleteMemeber(memberId).subscribe(resultado => {
-  //     this.modalRef.hide();
-  //     alert('Member excluída com sucesso');
-  //     this.dataService.getAllMembers().subscribe(reg => {
-  //       this.members = reg;
-  //     });
-  //   });
-  // }
 }
 

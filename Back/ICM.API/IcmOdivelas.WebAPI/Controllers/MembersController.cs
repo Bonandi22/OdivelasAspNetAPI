@@ -54,22 +54,31 @@ namespace IcmOdivelas.WebAPI.Controllers
 
         // PUT: api/Members/5
         [HttpPut("{id}")]
-        public IActionResult PutMember(int id, Member model)
+        public async Task<IActionResult> PutMember(int id, Member model)
         {
-            var member = _repo.GetMemberById(id);
-            if (member == null) return BadRequest("member not found");
+          var member = await _repo.GetMemberById(id);
+                if (member == null) return BadRequest("member not found");
+                
+                member.Name = model.Name;
+                member.PhoneNumber = model.PhoneNumber;
+                member.Address=model.Address;
+                member.City=model.City;
+                member.Region = model.Region;
+                member.BirthDate = model.BirthDate;
+                member.Isbaptized = model.Isbaptized;
+                member.Nacionality = model.Nacionality;
+                member.CategoryId = model.CategoryId;
+                member.GroupId = model.GroupId;
+                member.SituationId = model.SituationId;
 
-            _mapper.Map(model, member);
-
-            _repo.Update(member);
-            if (_repo.SaveChanges())
-            {
-                return Created($"/api/members/{model.Id}", _mapper.Map<Member>(member));
-            }
-
-            return Ok("member update");
-        
+                _repo.Update(member);
+                if (_repo.SaveChanges())
+                {
+                    return Created($"/api/members/{model.Id}", member);
+                }
+                return Ok("member update");        
         }
+
         // Patch: api/Members/5
         [HttpPatch("{id}")]
         public IActionResult PatchMember(int id, Member model)

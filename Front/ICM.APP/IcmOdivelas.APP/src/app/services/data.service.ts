@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, mergeMap, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
@@ -57,19 +57,28 @@ export class DataService {
   SalveMember(members: members) : Observable<any>{
   return this.http.post<members>(`${this.apiUrl}/members`, members)
   }
-
   SalveMemberRoles(memberRoles: { memberId: any; roleId: any; }[]): Observable<any> {
     const url = `${this.apiUrl}/memberRoles`;
     return this.http.post(url, memberRoles);
   }
+ //Update member
+updateMember(memberId: number, memberData: members): Observable<any> {
+  const url = `${this.apiUrl}/members/${memberId}`;
+  return this.http.put<members>(url, memberData, httpOptions);
+}
 
-  //Update member
-  updateMember(members: members): Observable<any> {
-    return this.http.put<members>(this.apiUrl, members, httpOptions);
-  }
-
+UpdateMemberRoles(memberRoles: { memberId: any; roleId: any; }[]): Observable<any> {
+  const url = `${this.apiUrl}/MemberRoles/update`;
+  // Return the observable chain
+  return this.http.post(url, memberRoles).pipe(
+    catchError((error) => {
+      console.error("Error during the process of updating MemberRoles:", error);
+      return throwError("Error during the process of updating MemberRoles");
+    })
+  );
+}
   //Delete Member
-  DeleteMemeber(memberId: number): Observable<any> {
+  DeleteMember(memberId: number): Observable<any> {
     const url = `${this.apiUrl}/members/${memberId}`;
     return this.http.delete<number>(url, httpOptions);
   }

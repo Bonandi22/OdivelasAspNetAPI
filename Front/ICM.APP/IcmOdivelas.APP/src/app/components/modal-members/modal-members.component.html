@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title" id="modaLabel">Member</h4>
+</div>
+<div class="modal-body text-center">
+  <div>
+    <p>Name: {{ member.name }}</p>
+    <p>Phone: {{ member.phoneNumber }}</p>
+    <p>birthDate: {{ formatarDataPorExtenso(member.birthDate) }}</p>
+    <p>isbaptized: {{ member.isbaptized }}</p>
+    <p>nacionality: {{ member.nacionality }}</p>
+    <p>category: {{ getCategoryName( member.categoryId) }}</p>
+    <p>Situation: {{ getSituationName(member.situationId )}}</p>
+    <p>Group: {{ getGroupName(member.groupId) }}</p>
+    <!-- <p>Roles:</p>
+    <ul>
+      <li *ngFor="let memberRole of getMemberRoles(member.id)">{{ getRoleName(memberRole.roleId) }}</li>
+    </ul> -->
+  </div>
+</div>
+<div class="model-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
+</div>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container p-5">
+    <div class="row">
+      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="forms">
+        <h6>{{formsTitle}}</h6>
+        <hr>
+        <form [formGroup]="forms" (ngSubmit)="SendEditForms()">
+          <div class="form-group">
+            <label for="nameInput">Name</label>
+            <input id="nameInput" type="text" class="form-control form-control-sm" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumberInput">Phone Number</label>
+            <input id="phoneNumberInput" type="text" class="form-control form-control-sm" formControlName="phoneNumber">
+          </div>
+          <div class="form-group">
+            <label for="birthDateInput">Birth Date</label>
+            <input id="birthDateInput" type="date" class="form-control form-control-sm" formControlName="birthDate">
+          </div>
+          <div class="form-group">
+            <label for="isBaptizedInput">Is Baptized?</label>
+            <select id="isBaptizedInput" class="form-control form-control-sm" formControlName="isbaptized">
+              <option [value]="true">Yes</option>
+              <option [value]="false">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="nationalityInput">Nationality</label>
+            <input id="nationalityInput" type="text" class="form-control form-control-sm" formControlName="nacionality">
+          </div>
+          <div class="form-group">
+            <label for="rolesInput">Roles</label>
+            <select id="rolesInput" class="form-control" formControlName="selectedRoles" multiple>
+              <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="categoryInput">Category</label>
+            <select id="categoryInput" class="form-control form-control-sm" formControlName="categoryId">
+              <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="groupInput">Group</label>
+            <select id="groupInput" class="form-control form-control-sm" formControlName="groupId">
+              <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="situationInput">Situation</label>
+            <select id="situationInput" class="form-control form-control-sm" formControlName="situationId">
+              <option *ngFor="let situation of situations" [value]="situation.id">{{ situation.name }}</option>
+            </select>
+          </div>
+          <br>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light">Back</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

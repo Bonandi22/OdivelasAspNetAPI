@@ -66,7 +66,6 @@ namespace IcmOdivelas.WebAPI.Data
         }
 
         //Groups
-
         public Task<IEnumerable<Group>> GetAllGroups()
         {
             var groups = _context.Groups.ToList();
@@ -100,6 +99,11 @@ namespace IcmOdivelas.WebAPI.Data
         {
             var memberRoles = await _context.MemberRoles.FindAsync(id);
             return memberRoles!;
+        }
+       public MemberRole GetMemberRoleByIdUpdate(int memberId, int roleId)
+        {
+            var memberRole = _context.MemberRoles.Find(memberId, roleId);
+            return memberRole!;
         }
 
         //login

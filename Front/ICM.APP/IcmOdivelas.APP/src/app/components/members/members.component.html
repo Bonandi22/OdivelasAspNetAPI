@@ -13,14 +13,14 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nome Completo</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Birth</th>
+          <th scope="col">Full Name</th>
+          <!-- <th scope="col">Phone</th> -->
+          <!-- <th scope="col">Birth</th>
           <th scope="col">Isbaptized</th>
           <th scope="col">Nacionality</th>
           <th scope="col">Group</th>
           <th scope="col">Situation</th>
-          <th scope="col">Category</th>
+          <th scope="col">Category</th> -->
           <th scope="col">Roles</th>
           <th scope="col">Actions</th>
         </tr>
@@ -29,13 +29,13 @@
         <tr *ngFor="let member of members" class="pointer">
           <td scope="row">{{ member.id }}</td>
           <td>{{ member.name }}</td>
-          <td>{{ member.phoneNumber }}</td>
-          <td>{{ formatarDataPorExtenso(member.birthDate) }}</td>
+          <!-- <td>{{ member.phoneNumber }}</td> -->
+          <!-- <td>{{ formatarDataPorExtenso(member.birthDate) }}</td>
           <td>{{ member.isbaptized ? 'Sim' : 'Não' }}</td>
           <td>{{ member.nacionality }}</td>
           <td>{{ getGroupName(member.groupId) }}</td>
           <td>{{ getSituationName(member.situationId) }}</td>
-          <td>{{ getCategoryName(member.categoryId) }}</td>
+          <td>{{ getCategoryName(member.categoryId) }}</td> -->
           <td>
             <ul>
               <li *ngFor="let memberRole of getMemberRoles(member.id)">{{ getRoleName(memberRole.roleId) }}</li>
@@ -43,9 +43,14 @@
           </td>
           <ul>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-primary" (click)="editMember(member.id)">Edit</button>
-              <button type="button" class="btn btn-outline-info" (click)="showDetails(member.id)">Details</button>
-              <button type="button" class="btn btn-outline-danger" (click)="deleteMember(member.id)">Delete</button>
+              <button type="button" class="btn btn-outline-primary"
+                      [routerLink]="['/edit-member', member.id]">Edit</button>
+
+                  <button type="button" class="btn btn-outline-info"
+                      (click)="showDetails(member)">Details</button>
+
+              <button type="button" class="btn btn-outline-danger"
+                      (click)="deleteMember(member.id)">Delete</button>
             </div>
           </ul>
           </tr>

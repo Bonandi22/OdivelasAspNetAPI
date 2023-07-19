@@ -34,6 +34,7 @@ namespace IcmOdivelas.WebAPI.Data
         //MemberRoles
         Task<IEnumerable<MemberRole>> GetAllMemberRole();
         Task<MemberRole> GetMemberRoleById(int id);
+        MemberRole GetMemberRoleByIdUpdate(int memberId, int roleId);
 
         //login
         Task<bool> IsValidUser(string username, string password);

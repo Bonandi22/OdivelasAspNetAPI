@@ -42,6 +42,9 @@ import { MatListModule } from '@angular/material/list';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { ModalMembersComponent } from './components/modal-members/modal-members.component';
+import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
+import { EditMemberComponent } from './components/edit-members/edit-members.component';
 
 
 
@@ -63,7 +66,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MenuComponent,
     RegisterMemberComponent,
     DashboardComponent,
-  ],
+    ModalMembersComponent,
+    ModalConfirmComponent,
+    EditMemberComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
